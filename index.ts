@@ -15,6 +15,8 @@ export interface Sticky {
 export interface Board {
   id: string
   host_key: string
+  board_type: 'general' | 'daily'
+  board_date: string | null
   axis_top: string
   axis_bottom: string
   axis_left: string

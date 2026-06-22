@@ -2,6 +2,8 @@
 CREATE TABLE boards (
   id TEXT PRIMARY KEY,
   host_key TEXT NOT NULL,
+  board_type TEXT NOT NULL DEFAULT 'general',
+  board_date DATE,
   axis_top TEXT NOT NULL DEFAULT '重要度 高い',
   axis_bottom TEXT NOT NULL DEFAULT '重要度 低い',
   axis_left TEXT NOT NULL DEFAULT '所要時間 短い',
@@ -27,6 +29,7 @@ CREATE TABLE stickies (
 -- インデックス作成
 CREATE INDEX idx_stickies_board_id ON stickies(board_id);
 CREATE INDEX idx_stickies_z_index ON stickies(z_index);
+CREATE INDEX idx_boards_daily ON boards(board_date, board_type);
 
 -- リアルタイム有効化
 ALTER PUBLICATION supabase_realtime ADD TABLE boards;
